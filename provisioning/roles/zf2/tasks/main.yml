@@ -1,0 +1,6 @@
+---
+  - name: ZF2 | Copy the code from repository
+    sudo_user: "{{ web_user }}"
+    sudo: yes
+    shell: composer create-project --stability=dev zendframework/skeleton-application  /home/{{web_user}}/public_html --no-interaction --no-ansi
+    notify: composer update

@@ -1,0 +1,7 @@
+---
+domain_name: zf2demo
+repository: https://github.com/zendframework/zf2.git
+nginx_dir: /etc/nginx
+web_user: web
+# password: web
+web_password: $6$rounds=100000$FHv93gotAuSIsKSN$SL5DoEZwMwQeu9xaLT3w3c4CSoWHfV5TTzhEDoQzCLUEbdLGJ4E9WwDkP1SVyZ0/2Im4qEFTggl/ZbGtflIhu.

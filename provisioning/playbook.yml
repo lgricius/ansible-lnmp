@@ -1,0 +1,10 @@
+- hosts: all
+  vars_files:
+    - vars/defaults.yml
+
+  roles:
+    - common
+    - nginx
+    - php5-fpm
+    - mariadb
+    - zf2

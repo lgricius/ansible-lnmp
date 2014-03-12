@@ -1,0 +1,38 @@
+---
+  - name: Common | define hostname
+    sudo: yes
+    action: template src=hosts.j2 dest=/etc/hosts
+
+  - name: Common | update APT Cache
+    sudo: yes
+    apt: update_cache=yes
+
+  - name: Common | update OS
+    sudo: yes
+    apt: upgrade=safe
+
+  - name: Common | create web user
+    sudo: yes
+    user: name={{ web_user }} password={{ web_password }} groups="sudo" comment="Comment" state=present
+
+  - name: Common | Check if nginx public_html dir exists
+    stat: path=/home/{{ web_user }}/public_html
+    register: check_path
+
+  - name: Common | create nginx public_html dir in web user's home
+    sudo: yes
+    file: dest=/home/{{ web_user }}/public_html owner={{ web_user }} state=directory
+    when: check_path.stat.exists == false
+
+  - name: Common | install required packages
+    sudo: yes
+    action: apt name={{ item }} state=latest
+    with_items:
+      - vim
+      - git
+      - git-core
+      - zsh
+      - python-pip
+      - curl
+      - python-mysqldb
+      - python-pycurl

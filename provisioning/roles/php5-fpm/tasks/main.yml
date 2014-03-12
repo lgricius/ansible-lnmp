@@ -1,0 +1,13 @@
+---
+  - name: install php5-fpm
+    sudo: yes
+    action: apt name={{ item }} state=latest
+    with_items:
+      - php5-fpm
+      - php5-cli
+    notify:
+      - restart php5-fpm
+
+  - name: Install composer
+    sudo: yes
+    shell: curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer

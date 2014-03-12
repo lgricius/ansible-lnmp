@@ -1,0 +1,5 @@
+---
+- name: composer update
+  sudo_user: "{{ web_user }}"
+  sudo: yes
+  shell: composer update --working-dir=/home/{{web_user}}/public_html --no-interaction --no-ansi

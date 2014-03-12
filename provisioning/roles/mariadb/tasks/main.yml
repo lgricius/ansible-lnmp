@@ -1,0 +1,13 @@
+---
+- name: MariaDB | Check if keys for mariadb exist
+  sudo: yes
+  apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xCBCB082A1BB943DB state=present
+
+- name: MariaDB | Check if repositories for mariadb exist
+  sudo: yes
+  apt_repository: repo='deb http://mirrors.supportex.net/mariadb/repo/5.5/debian wheezy main' state=present update_cache=yes
+
+- name: MariaDB | Install mariadb if not available
+  sudo: yes
+  apt: pkg=mariadb-server state=latest
+  notify: restart mysql
