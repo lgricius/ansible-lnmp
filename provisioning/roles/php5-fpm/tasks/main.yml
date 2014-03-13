@@ -1,5 +1,9 @@
 ---
-  - name: install php5-fpm
+  - name: PHP5-FPM | Add repository for PHP 5.4
+    sudo: yes
+    apt_repository: repo='ppa:ondrej/php5-oldstable' state=present update_cache=yes
+
+  - name: PHP5-FPM | install php5-fpm
     sudo: yes
     action: apt name={{ item }} state=latest
     with_items:
@@ -8,6 +12,6 @@
     notify:
       - restart php5-fpm
 
-  - name: Install composer
+  - name: PHP5-FPM | Install composer
     sudo: yes
     shell: curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /home/vagrant/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer

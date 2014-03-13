@@ -36,3 +36,4 @@
       - curl
       - python-mysqldb
       - python-pycurl
+      - python-software-properties
